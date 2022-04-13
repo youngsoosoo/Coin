@@ -76,18 +76,18 @@ h2{
 @media screen and (max-width: 768px){
     .input-box{
         position:relative;
-        width:250px;
+        width:300px;
     }
     .input-box > input{
-        width:350px;
+        width:300px;
         padding:50px 10px 5px 0px;
     }
-    input[type=submit]{
+    button[type=submit]{
         background-color: #263343;
         border:none;
         color:white;
         border-radius: 5px;
-        width:360px;
+        width:300px;
         height:35px;
         font-size: 14pt;
         margin-top:100px;

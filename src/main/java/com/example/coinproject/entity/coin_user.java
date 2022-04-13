@@ -1,23 +1,25 @@
 package com.example.coinproject.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 @AllArgsConstructor
 @ToString
+@Entity
 @Data
-@NoArgsConstructor //기본 생성자
-public class Login {
-
+@Getter
+@Setter
+@NoArgsConstructor  //기본 생성자
+public class coin_user {
     @Id
     private String userid;
     @Column
     private String userpw;
+    @Column
+    private String username;
+    @Column
+    private Integer usercoin = 0;
 }
