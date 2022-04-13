@@ -1,0 +1,97 @@
+h2{
+    display: flex;
+    justify-content: center;
+}
+form{
+    padding:10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+.input-box{
+    position:relative;
+    margin:10px 0;
+}
+.input-box > input{
+    background:transparent;
+    border:none;
+    border-bottom: solid 1px #263343;
+    padding:50px 10px 5px 0px;
+    font-size:14pt;
+    width:500px;
+}
+input::placeholder{
+    color:transparent;
+}
+input:placeholder-shown + label{
+    color:#263343;
+    font-size:14pt;
+    top:15px;
+
+}
+input:focus + label, label{
+    color:#263343;
+    font-size:10pt;
+    pointer-events: none;
+    position: absolute;
+    left:0px;
+    top:0px;
+    padding:30px 10px 5px 0px;
+    transition: all 0.2s ease ;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+}
+
+input:focus, input:not(:placeholder-shown){
+    border-bottom: solid 1px #263343;
+    outline:none;
+}
+button[type=submit]{
+    background-color: #263343;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:500px;
+    height:35px;
+    font-size: 14pt;
+    margin-top:100px;
+    margin: 0;
+    text-align: center;
+}
+#forgot{
+    text-align: right;
+    font-size:12pt;
+    color:#263343;
+    margin:10px 0px;
+}
+h2{
+    color:#263343;
+}
+
+.regist {
+    color:#263343;
+}
+@media screen and (max-width: 768px){
+    .input-box{
+        position:relative;
+        width:250px;
+    }
+    .input-box > input{
+        width:350px;
+        padding:50px 10px 5px 0px;
+    }
+    input[type=submit]{
+        background-color: #263343;
+        border:none;
+        color:white;
+        border-radius: 5px;
+        width:360px;
+        height:35px;
+        font-size: 14pt;
+        margin-top:100px;
+        margin: 0;
+        text-align: center;
+    }
+}
