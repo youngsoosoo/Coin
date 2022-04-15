@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @Entity
-@Data
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor  //기본 생성자
