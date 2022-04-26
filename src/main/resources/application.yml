@@ -1,4 +1,6 @@
 spring:
+  mustache:
+    expose-session-attributes: true
   datasource:
     url: jdbc:mysql://localhost:3306/basicboard?serverTimeZone=Asia/Seoul
     username: root

@@ -8,9 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,8 +31,7 @@ public class LoginController {
     }
 
     @GetMapping("/mainpage")
-    public String Mainpage(Model model){
-        model.addAttribute("userid", "YoungSoo");
+    public String Mainpage(){
         return "mainpage";
     }
 
@@ -38,20 +40,38 @@ public class LoginController {
         return "mypage";
     }
 
+    @GetMapping("/update")
+    public String Update(){
 
-    @PostMapping("/loginaction")
-    public String loginAction(RegisterForm form){
-        log.info(form.toString());
+        return "redirect:/my";
+    }
+
+    @GetMapping("/my")
+    public String My(){
+        return "my";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("userid");
+        return "redirect:/login";
+    }
+
+    @PostMapping("/login")
+    public String loginAction(RegisterForm form, HttpSession session){
 
         coin_user user = form.toEntity();
-
-        log.info(user.toString());
         int total = loginService.login(user);
-        log.info(String.valueOf(total));
+        Optional<coin_user> result_id = registerRepository.findByUserid(user.getUserid());
+
         if(total == 0) {
-            return "login";
+            return "redirect:/login";
         } else{
-            return "mainpage";
+            System.out.println("로그인 성공");
+            session.setAttribute("userid", user.getUserid());
+            session.setAttribute("username", result_id.get().getUsername());
+            session.setAttribute("usercoin", result_id.get().getUsercoin());
+            return "redirect:/mainpage";
         }
     }
 }

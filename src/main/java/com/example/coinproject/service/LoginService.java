@@ -20,14 +20,12 @@ public class LoginService {
         log.info(result_id.get().getUserid());
         log.info(result_id.get().getUserpw());
 
-
         if (!result_id.get().getUserid().equals(user.getUserid())) {
-            if(!result_id.get().getUserpw().equals(user.getUserpw())) {
-                return 0;
-            }
             return 0;
-        }else{
-            return 1;
         }
+        if(!result_id.get().getUserpw().equals(user.getUserpw())) {
+            return 0;
+        }
+        return 1;
     }
 }
