@@ -13,13 +13,13 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor  //기본 생성자
-public class coin_user {
+public class coin_room {
+    @Column
+    private int iuse;   //사용 여부 1, 0으로 표시
     @Id
-    private String userid;
+    private int numroom;//방 번호
     @Column
-    private String userpw;
+    private int coin;   //방 코인 개수
     @Column
-    private String username;
-    @Column
-    private Integer usercoin;
+    private int etime;  //남은 시간
 }
