@@ -1,83 +1,18 @@
 {{>layouts/afterheader}}
 
-    <div class="parent" style="display:flex; justify-content: center; margin-left: 20%; margin-top: 5%;">
-        <div class="first">
-            <table class=table8_1>
-                <tr><th>{{num}}</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-        <div class="second">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-        <div class="third">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
+<section style="float:left; width:100%; padding:5px;">
+{{#list}}
+    <div class="parent" style="width: 100%; margin-top: 5%;">
+        <div style="width:30%; height: 150px; padding: 10px; padding-left: 100px; float:left; justify-content: center; box-sizing: border-box;">
+            <table class="table8_1">
+                <tr><th>{{numroom}}</th></tr>
+                <tr><td>{{iuse}}</td></tr>
+                <tr><td>코인 : <input type="number" value="{{coin}}" style="width: 40px;" maxlength="2">&nbsp;<input type="submit" value="충전"></td></tr>
+                <tr><td>시간 : {{etime}}</td></tr>
             </table>
         </div>
     </div>
-    <div class="parent" style="display:flex; justify-content: center; margin-left: 20%; margin-top: 5%;">
-        <div class="first">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-        <div class="second">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-        <div class="third">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-    </div>
-    <div class="parent" style="display:flex; justify-content: center; margin-left: 20%; margin-top: 5%;">
-        <div class="first">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-        <div class="second">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-        <div class="third">
-            <table class=table8_1>
-                <tr><th>SAMPLE</th></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-                <tr><td>SAMPLE</td></tr>
-            </table>
-        </div>
-    </div>
-
+{{/list}}
+</section>
 </body>
 </html>

@@ -1,5 +1,5 @@
 .table8_1 table {
-    width:100%;
+    width: 30%;
     margin:15px 0;
 }
 .table8_1 th {
@@ -12,6 +12,7 @@
 }
 .table8_1,.table8_1 th,.table8_1 td
 {
+    width: 100%;
     font-size:0.95em;
     text-align:center;
     padding:4px;
@@ -19,6 +20,7 @@
     border-collapse:collapse
 }
 .table8_1 tr:nth-child(odd){
+    width: 100%;
     background-color:#dbf2fe;
     background:-o-linear-gradient(90deg, #dbf2fe, #f7fcfe);
     background:-moz-linear-gradient( center top, #dbf2fe 5%, #f7fcfe 100% );
@@ -41,4 +43,13 @@
 .third{
     width:30%;
     box-sizing: border-box;
+}
+input[type=submit]{
+    background-color: #263343;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:50px;
+    font-size: 14pt;
+    text-align: center;
 }

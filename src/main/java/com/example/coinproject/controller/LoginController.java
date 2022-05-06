@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,18 +65,16 @@ public class LoginController {
 
 
     @GetMapping("/my")
-    public String My(HttpSession session){
+    public String My(Model model, HttpSession session){
         Optional<coin_user> result_id = registerRepository.findByUserid((String) session.getAttribute("userid"));
-        session.setAttribute("username", result_id.get().getUsername());
-        session.setAttribute("usercoin", result_id.get().getUsercoin());
+        model.addAttribute("username", result_id.get().getUsername());
+        model.addAttribute("usercoin", result_id.get().getUsercoin());
         return "my";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("userid");
-        session.removeAttribute("username");
-        session.removeAttribute("usercoin");
         return "redirect:/login";
     }
 

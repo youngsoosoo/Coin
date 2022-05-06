@@ -1,7 +1,6 @@
 package com.example.coinproject.repository;
 
 import com.example.coinproject.entity.coin_room;
-import com.example.coinproject.entity.coin_user;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
