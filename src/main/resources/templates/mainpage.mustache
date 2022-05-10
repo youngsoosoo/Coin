@@ -1,18 +1,24 @@
 {{>layouts/afterheader}}
 
 <section style="float:left; width:100%; padding:5px;">
+
 {{#list}}
     <div class="parent" style="width: 100%; margin-top: 5%;">
         <div style="width:30%; height: 150px; padding: 10px; padding-left: 100px; float:left; justify-content: center; box-sizing: border-box;">
-            <table class="table8_1">
-                <tr><th>{{numroom}}</th></tr>
-                <tr><td>{{iuse}}</td></tr>
-                <tr><td>코인 : <input type="number" value="{{coin}}" style="width: 40px;" maxlength="2">&nbsp;<input type="submit" value="충전"></td></tr>
-                <tr><td>시간 : {{etime}}</td></tr>
-            </table>
+
+                    <table class="table8_1">
+                        <form action="/use" method="post">
+                            <tr><th><input type="hidden" value="{{numroom}}" name="numroom">{{numroom}}</th></tr>
+                            <tr><td><input type="hidden" value="{{iuse}}" name="iuse">{{iuse}}</td></tr>
+                            <tr><td>코인 : {{coin}} <input type="number" name="coin" value=0 style="width: 40px;" maxlength="2">&nbsp;<input type="submit" value="충전"></td></tr>
+                            <tr><td><input type="hidden" value="{{etime}}" name="etime">시간 : {{etime}}</td></tr>
+                        </form>
+                    </table>
+
         </div>
     </div>
 {{/list}}
+
 </section>
 </body>
 </html>

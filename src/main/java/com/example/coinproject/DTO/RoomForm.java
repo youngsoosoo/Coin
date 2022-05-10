@@ -8,7 +8,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class RoomForm {
-    private int iuse;
+    private String iuse;
     private int numroom;
     private int coin;
     private int etime;

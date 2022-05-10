@@ -40,26 +40,26 @@ public class LoginController {
     @PostMapping("/update")
     public String Update(RegisterForm form){
         coin_user user = new coin_user();
-        Optional<coin_user> result_id = registerRepository.findByUserid(form.toEntity().getUserid());
-        user.setUserid(form.toEntity().getUserid());
-        if(form.toEntity().getUsername() == ""){
+        Optional<coin_user> result_id = registerRepository.findByUserid(form.toEntity().getUserid());   //DB에서 불러온 coin_user
+        user.setUserid(form.toEntity().getUserid());    //userid는 바꿀 수 없다.
+        if(form.toEntity().getUsername() == ""){        //입력하지 않았다면 DB에 있던 원래 값을 다시 넣어준다.
             user.setUsername((String) result_id.get().getUsername());
-        }else{
+        }else{                                          // 입력 값이 있다면 입력 값으로 바꿔준다
             user.setUsername(form.toEntity().getUsername());
         }
-        if(form.toEntity().getUserpw() == ""){
+        if(form.toEntity().getUserpw() == ""){          //입력하지 않았다면 DB에 있던 원래 값을 다시 넣어준다.
             user.setUserpw((String) result_id.get().getUserpw());
-        }else{
+        }else{                                          // 입력 값이 있다면 입력 값으로 바꿔준다
             user.setUserpw(form.toEntity().getUserpw());
         }
-        if(form.toEntity().getUsercoin() == null){
+        if(form.toEntity().getUsercoin() == null){      //입력하지 않았다면 DB에 있던 원래 값을 다시 넣어준다.
             user.setUsercoin(result_id.get().getUsercoin());
         }
-        else{
+        else{                                           //입력 값이 있다면 원래 있던 코인의 수와 더해준다.
             Integer coin = (Integer) result_id.get().getUsercoin() + form.toEntity().getUsercoin();
             user.setUsercoin(coin);
         }
-        registerRepository.save(user);
+        registerRepository.save(user);                  // DB에 저장해준다
         return "redirect:/my";
     }
 

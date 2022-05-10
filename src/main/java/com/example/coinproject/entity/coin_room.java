@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor  //기본 생성자
 public class coin_room {
     @Column
-    private int iuse;   //사용 여부 1, 0으로 표시
+    private String iuse;   //사용 여부 1, 0으로 표시
     @Id
     private int numroom;//방 번호
     @Column
