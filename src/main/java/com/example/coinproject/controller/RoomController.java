@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
-import java.text.Normalizer;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @Slf4j  //로깅을 위한 어노테이션
 public class RoomController {
+
 
     @Autowired // 객체 자동 연결
     private RoomRepository roomRepository;
@@ -28,6 +29,24 @@ public class RoomController {
 
     @GetMapping("/mainpage")
     public String Mainpage(Model model){
+        int hour=0;
+        int minute = 63;
+        int second = 0;
+        LocalTime currentTime = LocalTime.now();
+        LocalTime targetTime = LocalTime.of(22, 00, 00);
+        //현재 시간
+        if(minute >= 60){
+            minute = minute - 60;
+            hour++;
+        }
+        if(currentTime.plusHours(hour).isAfter(targetTime)){    //시간이 지났는지 안 지났는지 비교
+            
+        }
+
+
+        System.out.println(currentTime);
+        System.out.println(targetTime);
+
         List<coin_room> all = roomRepository.findAll(); //리스트에 DB정보 넣기
         model.addAttribute("list",all); //반복문을 위한 반복문 사용과 리스트 값 넘기기 위한 model
         return "mainpage";
