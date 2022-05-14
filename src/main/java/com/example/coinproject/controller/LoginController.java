@@ -32,6 +32,16 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/admin")
+    public String Admin(){
+        return "admin";
+    }
+
+    @GetMapping("/usermanage")
+    public String UserManage(){
+        return "userma";
+    }
+
     @GetMapping("/mypage")
     public String Mypage(){
         return "mypage";

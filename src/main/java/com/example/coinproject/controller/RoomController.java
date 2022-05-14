@@ -29,24 +29,6 @@ public class RoomController {
 
     @GetMapping("/mainpage")
     public String Mainpage(Model model){
-        int hour=0;
-        int minute = 63;
-        int second = 0;
-        LocalTime currentTime = LocalTime.now();
-        LocalTime targetTime = LocalTime.of(22, 00, 00);
-        //현재 시간
-        if(minute >= 60){
-            minute = minute - 60;
-            hour++;
-        }
-        if(currentTime.plusHours(hour).isAfter(targetTime)){    //시간이 지났는지 안 지났는지 비교
-            
-        }
-
-
-        System.out.println(currentTime);
-        System.out.println(targetTime);
-
         List<coin_room> all = roomRepository.findAll(); //리스트에 DB정보 넣기
         model.addAttribute("list",all); //반복문을 위한 반복문 사용과 리스트 값 넘기기 위한 model
         return "mainpage";
@@ -59,18 +41,28 @@ public class RoomController {
         Optional<coin_user> result_user = registerRepository.findByUserid((String) session.getAttribute("userid"));
         Optional<coin_room> result_room = roomRepository.findByNumroom(form.toEntity().getNumroom());
         room.setNumroom(form.toEntity().getNumroom());
-        int a = result_room.get().getCoin() + form.toEntity().getCoin(); // 원래 방에 존재하는 코인 개수와의 합
-        int b = a * 3;  //etime 시간 계산
-        int c = result_user.get().getUsercoin() - form.toEntity().getCoin();    //아이디가 보유하고 있는 코인을 방에 넣어줌
-        if(form.toEntity().getCoin() > 0){
-            room.setCoin(a);
-            room.setEtime(b);
+
+        int hour=0;
+        int coin = result_room.get().getCoin() + form.toEntity().getCoin(); // 원래 방에 존재하는 코인 개수와의 합
+        int minute = coin * 3;  //etime 시간 계산
+        int inputcoin = result_user.get().getUsercoin() - form.toEntity().getCoin();    //아이디가 보유하고 있는 코인을 방에 넣어줌
+
+        LocalTime currentTime = LocalTime.now();
+        LocalTime targetTime = LocalTime.of(22, 00);
+        //현재 시간
+        if(minute >= 60){
+            minute = minute - 60;
+            hour++;
+        }
+        if(form.toEntity().getCoin() > 0 && !currentTime.plusHours(hour).isAfter(targetTime)){ //시간이 지났는지 안 지났는지와 코인이 0개 이상일 때
+            room.setCoin(coin);
+            room.setEtime(minute);
             room.setIuse("사용중");
             user.setUserid(result_user.get().getUserid());
             if(result_user.get().getUsercoin() < 1){
                 return "coinfail";
             }
-            user.setUsercoin(c);
+            user.setUsercoin(inputcoin);
             user.setUsername(result_user.get().getUsername());
             user.setUserpw(result_user.get().getUserpw());
             roomRepository.save(room);
