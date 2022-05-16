@@ -37,11 +37,6 @@ public class LoginController {
         return "admin";
     }
 
-    @GetMapping("/usermanage")
-    public String UserManage(){
-        return "userma";
-    }
-
     @GetMapping("/mypage")
     public String Mypage(){
         return "mypage";
@@ -88,8 +83,30 @@ public class LoginController {
         return "redirect:/login";
     }
 
+
+
     @PostMapping("/login")
     public String loginAction(RegisterForm form, HttpSession session){
+
+        coin_user user = form.toEntity();   //form으로 받은 개체 값을 coin_user에 넣어준다.
+        int total = loginService.login(user);   //loginService의 login 함수를 호출해준다.
+
+        if(total == 0) {
+            return "redirect:/login";
+        } else{
+            System.out.println("로그인 성공");
+            session.setAttribute("userid", user.getUserid());
+            return "redirect:/mainpage";
+        }
+    }
+
+    @GetMapping("/usermanage")
+    public String Managerlogin(){
+        return "userma";
+    }
+
+    @PostMapping("/managerlogin")
+    public String ManagerloginAction(RegisterForm form, HttpSession session){
 
         coin_user user = form.toEntity();   //form으로 받은 개체 값을 coin_user에 넣어준다.
         int total = loginService.login(user);   //loginService의 login 함수를 호출해준다.
