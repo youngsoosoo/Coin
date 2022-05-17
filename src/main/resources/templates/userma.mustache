@@ -1,4 +1,11 @@
 {{>layouts/afterheader}}
-<h1>유저 목록을 DB에서 읽어와서 나열 시킬 예정</h1>
+<div style="width: 100%;justify-content: center; display: flex; margin-top: 5%;">
+    <table class=table2_1>
+        <tr><th>아이디</th><th>비밀번호</th><th>닉네임</th><th>코인</th></tr>
+        {{#list}}
+            <tr><td>{{userid}}</td><td>{{userpw}}</td><td>{{username}}</td><td>{{usercoin}}</td></tr>
+        {{/list}}
+    </table>
+</div>
 </body>
 </html>

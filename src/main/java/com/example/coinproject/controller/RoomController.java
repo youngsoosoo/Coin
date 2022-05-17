@@ -47,14 +47,15 @@ public class RoomController {
         int minute = coin * 3;  //etime 시간 계산
         int inputcoin = result_user.get().getUsercoin() - form.toEntity().getCoin();    //아이디가 보유하고 있는 코인을 방에 넣어줌
 
-        LocalTime currentTime = LocalTime.now();
-        LocalTime targetTime = LocalTime.of(22, 00);
+        LocalTime currentTime = LocalTime.of(21, 57);   //현재 시간 now()
+        LocalTime targetTime = LocalTime.of(22, 00);    //마감 시간
+
         //현재 시간
         if(minute >= 60){
             minute = minute - 60;
             hour++;
         }
-        if(form.toEntity().getCoin() > 0 && !currentTime.plusHours(hour).isAfter(targetTime)){ //시간이 지났는지 안 지났는지와 코인이 0개 이상일 때
+        if(form.toEntity().getCoin() > 0 & !currentTime.plusHours(hour).plusMinutes(minute).isAfter(targetTime)){ //시간이 지났는지 안 지났는지와 코인이 0개 이상일 때
             room.setCoin(coin);
             room.setEtime(minute);
             room.setIuse("사용중");
@@ -69,9 +70,9 @@ public class RoomController {
             registerRepository.save(user);
             return "redirect:/mainpage";
         }else if(form.toEntity().getCoin() <= 0){
-            return "mainpage";
+            return "coinfail";
         }
-        return "mainpage";
+        return "coinfail";
     }
 
 }

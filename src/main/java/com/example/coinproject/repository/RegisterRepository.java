@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface RegisterRepository extends JpaRepository<coin_user, String> {
+public interface RegisterRepository extends JpaRepository<coin_user, String> {  //DB연동
     // userid을 가지고 User 정보를 가져올 수 있게 메소드 생성
     Optional<coin_user> findByUserid(String userid);
 }

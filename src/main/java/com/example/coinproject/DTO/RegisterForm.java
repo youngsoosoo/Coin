@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
-public class RegisterForm {
+public class RegisterForm {                             // userDTO
     private String userid;
     private String userpw;
     private String username;

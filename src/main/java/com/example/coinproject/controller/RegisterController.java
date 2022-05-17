@@ -17,12 +17,12 @@ public class RegisterController {
     private RegisterRepository registerRepository;
 
     @GetMapping("/register")
-    public String Register(){
+    public String Register(){                               //회원가입 페이지
         return"register";
     }
 
     @PostMapping("/registeraction")
-    public String registerAction(RegisterForm form){
+    public String registerAction(RegisterForm form){        //회원가입 페이지 백엔드
         log.info(form.toString());
         //System.out.println(form.toString()); --> 로깅기능으로 대체
         // 1. DTO 변환

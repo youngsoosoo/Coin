@@ -26,4 +26,14 @@ public class LoginService {
         }
         return 1;
     }
+
+    public int managerlogin(coin_user user){
+        if(!user.getUserid().equals("root")){
+            return 0;
+        }
+        if(!user.getUserpw().equals("1234")){
+            return 0;
+        }
+        return 1;
+    }
 }

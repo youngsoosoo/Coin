@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
-public class RoomForm {
+public class RoomForm {                         //rootDTO
     private String iuse;
     private int numroom;
     private int coin;

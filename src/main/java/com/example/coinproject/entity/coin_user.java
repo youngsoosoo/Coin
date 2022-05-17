@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor  //기본 생성자
-public class coin_user {
+public class coin_user {                    //개체
     @Id
     private String userid;
     @Column

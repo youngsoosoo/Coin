@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor  //기본 생성자
-public class coin_room {
+public class coin_room {                    //개체
     @Column
     private String iuse;   //사용 여부 1, 0으로 표시
     @Id

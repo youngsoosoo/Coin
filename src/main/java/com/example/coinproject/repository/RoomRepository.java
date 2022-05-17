@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface RoomRepository extends JpaRepository<coin_room, String> {
+public interface RoomRepository extends JpaRepository<coin_room, String> {      //DB연동
     // numroom을 가지고 Room 정보를 가져올 수 있게 메소드 생성
     Optional<coin_room> findByNumroom(int numroom);
 }
