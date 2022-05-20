@@ -47,7 +47,7 @@ public class RoomController {
         int minute = coin * 3;  //etime 시간 계산
         int inputcoin = result_user.get().getUsercoin() - form.toEntity().getCoin();    //아이디가 보유하고 있는 코인을 방에 넣어줌
 
-        LocalTime currentTime = LocalTime.of(21, 57);   //현재 시간 now()
+        LocalTime currentTime = LocalTime.now();   //현재 시간 now()
         LocalTime targetTime = LocalTime.of(22, 00);    //마감 시간
 
         //현재 시간
@@ -75,4 +75,8 @@ public class RoomController {
         return "coinfail";
     }
 
+    @GetMapping("/map")
+    public String Map(){
+        return "map";
+    }
 }

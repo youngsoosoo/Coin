@@ -27,6 +27,7 @@ public class RegisterController {
         //System.out.println(form.toString()); --> 로깅기능으로 대체
         // 1. DTO 변환
         coin_user user = form.toEntity();
+        user.setUsercoin(0);
         log.info(user.toString());
 
         // 2. Repository에게 엔티티를 DB안에 저장하게 함
