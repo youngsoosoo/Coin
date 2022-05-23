@@ -1,11 +1,28 @@
 {{>layouts/afterheader}}
-<div style="width: 100%;justify-content: center; display: flex; margin-top: 5%;">
-    <table class=table2_1>
-        <tr><th>아이디</th><th>비밀번호</th><th>닉네임</th><th>코인</th></tr>
-        {{#list}}
-            <tr><td>{{userid}}</td><td>{{userpw}}</td><td>{{username}}</td><td>{{usercoin}}</td></tr>
-        {{/list}}
-    </table>
+<div class="content" data-content="content-2" style="margin-top: 2.5%;">
+    <h2>사용자 관리</h2>
+    <div class="board_type1_wrap" style="margin-top: 2.5%;">
+        <table class="board_list_type1">
+            <thead>
+                <tr>
+                    <th class="active_type">아이디</th>
+                    <th class="active_type">비밀번호</th>
+                    <th class="active_type">닉네임</th>
+                    <th class="active_type">코인</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#list}}
+                    <tr>
+                        <td class="active_type">{{userid}}</td>
+                        <td class="active_type">{{userpw}}</td>
+                        <td class="active_type">{{username}}</td>
+                        <td class="active_type">{{usercoin}}</td>
+                    </tr>
+                {{/list}}
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
