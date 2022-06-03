@@ -1,5 +1,6 @@
 package com.example.coinproject.controller;
 
+import com.example.coinproject.DTO.RegisterForm;
 import com.example.coinproject.service.kakaoPayService;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -28,11 +29,10 @@ public class kakaopayController {
     }
 
     @PostMapping("/kakaoPay")
-    public String kakaoPay() {
-        log.info("kakaoPay post............................................");
+    public String kakaoPay(RegisterForm form) {
+        int coin = form.toEntity().getUsercoin();
 
-        return "redirect:" + kakaopay.kakaoPayReady();
-
+        return "redirect:" + kakaopay.kakaoPayReady(coin);
     }
 
     @GetMapping("/kakaoPaySuccess")

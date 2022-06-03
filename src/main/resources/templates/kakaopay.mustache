@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-</head>
-<body>
-
-<h1> kakaoPay api 이용하기 </h1>
-
+{{>layouts/afterHeader}}
 <form method="post" action="/kakaoPay">
-    <button><img src="layouts/payment_icon_yellow_large.png">카카오페이로 결제하기</button>
+    <div style="display:table-cell; vertical-align: middle;">
+        <h2>코인 충전</h2>
+        <div class="input-box">
+            <input type="number" name="coin" placeholder="코인">
+            <label for="Coin">코인</label>
+        </div>
+        <button type="submit">kakaopay 결제</button>
+    </div>
 </form>
-
-
 </body>
 </html>

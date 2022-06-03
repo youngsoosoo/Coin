@@ -15,12 +15,18 @@
         <input type="text" name="username" placeholder="닉네임">
             <label for="username">닉네임</label>
         </div>
-        <div class="input-box">
-            <input type="number" name="usercoin" placeholder="코인충전">
-            <label for="coin">코인충전</label>
-        </div>
-        <button type="submit">수정 및 충전</button>
+        <button type="submit">수정</button>
     </div>
 </form>
+    <div class="input-box" style="display:flex; justify-content: center; align-items: center;">
+        <button type="submit" style="text-align:center;" onclick="button1();">코인 충전</button>
+    </div>
+
+
+<script>
+    function button1(){
+        location.href="kakaoPay"
+    }
+</script>
 </body>
 </html>

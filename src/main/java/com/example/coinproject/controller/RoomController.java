@@ -28,14 +28,14 @@ public class RoomController {
     private RegisterRepository registerRepository;
 
     @GetMapping("/mainpage")
-    public String Mainpage(Model model){
+    public String Mainpage(Model model){        //메인페이지 노래방 테이블 출력
         List<coin_room> all = roomRepository.findAll(); //리스트에 DB정보 넣기
         model.addAttribute("list",all); //반복문을 위한 반복문 사용과 리스트 값 넘기기 위한 model
         return "mainpage";
     }
 
     @PostMapping("/use")
-    public String Use(RoomForm form, HttpSession session){
+    public String Use(RoomForm form, HttpSession session){  //코인 충전
         coin_user user = new coin_user();
         coin_room room = form.toEntity();
         Optional<coin_user> result_user = registerRepository.findByUserid((String) session.getAttribute("userid"));
@@ -76,7 +76,7 @@ public class RoomController {
     }
 
     @GetMapping("/map")
-    public String Map(){
+    public String Map(){    //지도
         return "map";
     }
 }

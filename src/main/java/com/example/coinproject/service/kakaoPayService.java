@@ -24,7 +24,7 @@ public class kakaoPayService {
     private KakaoPayVO kakaoPayVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
 
-    public String kakaoPayReady() {
+    public String kakaoPayReady(int coin) {
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -34,18 +34,20 @@ public class kakaoPayService {
         headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 
+        int sum = coin * 500;
+        String sum1 = Integer.toString(sum);
         // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-        params.add("cid", "TC0ONETIME");
-        params.add("partner_order_id", "1001");
-        params.add("partner_user_id", "gorany");
-        params.add("item_name", "갤럭시S9");
-        params.add("quantity", "1");
-        params.add("total_amount", "2100");
-        params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://localhost:8080/kakaoPaySuccess");
-        params.add("cancel_url", "http://localhost:8080/kakaoPayCancel");
-        params.add("fail_url", "http://localhost:8080/kakaoPaySuccessFail");
+        params.add("cid", "TC0ONETIME");            // 가맹점 코드
+        params.add("partner_order_id", "1");     // 가맹점 주문 번호
+        params.add("partner_user_id", "gorany");    // 가맹점 회원 아이디
+        params.add("item_name", "COIN");            // 상품명
+        params.add("quantity", "100");                // 상품 수량
+        params.add("total_amount", sum1);         // 상품 총액
+        params.add("tax_free_amount", "100");       // 상품 비과세 금액
+        params.add("approval_url", "http://localhost:8080/kakaoPaySuccess");    // 결제 성공시
+        params.add("cancel_url", "http://localhost:8080/kakaoPayCancel");       // 결제 취소시
+        params.add("fail_url", "http://localhost:8080/kakaoPaySuccessFail");    // 결제 실패시
 
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
