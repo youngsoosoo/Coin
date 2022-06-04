@@ -17,7 +17,6 @@ public class LoginService {
 
     public int login(coin_user user) {
         Optional<coin_user> result_id = registerRepository.findByUserid(user.getUserid());
-
         if (!result_id.get().getUserid().equals(user.getUserid())) {
             return 0;
         }

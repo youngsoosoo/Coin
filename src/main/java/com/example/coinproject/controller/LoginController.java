@@ -56,13 +56,7 @@ public class LoginController {
         }else{                                          // 입력 값이 있다면 입력 값으로 바꿔준다
             user.setUserpw(form.toEntity().getUserpw());
         }
-        if(form.toEntity().getUsercoin() == null){      //입력하지 않았다면 DB에 있던 원래 값을 다시 넣어준다.
-            user.setUsercoin(result_id.get().getUsercoin());
-        }
-        else{                                           //입력 값이 있다면 원래 있던 코인의 수와 더해준다.
-            Integer coin = (Integer) result_id.get().getUsercoin() + form.toEntity().getUsercoin();
-            user.setUsercoin(coin);
-        }
+        user.setUsercoin(result_id.get().getUsercoin());
         registerRepository.save(user);                  // DB에 저장해준다
         return "redirect:/my";
     }
@@ -91,7 +85,7 @@ public class LoginController {
         int total = loginService.login(user);   //loginService의 login 함수를 호출해준다.
 
         if(total == 0) {
-            return "redirect:/login";
+            return "login";
         } else{
             System.out.println("로그인 성공");
             session.setAttribute("userid", user.getUserid());
