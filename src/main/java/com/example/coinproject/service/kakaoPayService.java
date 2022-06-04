@@ -53,26 +53,26 @@ public class kakaoPayService {
         params.add("cancel_url", "http://localhost:8080/kakaoPay");       // 결제 취소시
         params.add("fail_url", "http://localhost:8080/kakaoPaySuccessFail");    // 결제 실패시
 
-        if(coin < 1){
-            return "http://localhost:8080/kakaoPaySuccessFail";
-        }else{
-            coin_user user = new coin_user();
-            Optional<coin_user> result_id = registerRepository.findByUserid(userid);   //DB에서 불러온 coin_user
-            user.setUserid(userid);    //userid는 바꿀 수 없다.
-            user.setUsername((String) result_id.get().getUsername());
-            user.setUserpw((String) result_id.get().getUserpw());
-            //입력 값이 있다면 원래 있던 코인의 수와 더해준다.
-            Integer sum = (Integer) result_id.get().getUsercoin() + coin;
-            user.setUsercoin(sum);
-            registerRepository.save(user);                  // DB에 저장해준다
-        }
-
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
         try {
             kakaoPayVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayVO.class);
 
             log.info("" + kakaoPayVO);
+
+            if(coin < 1){
+                return "http://localhost:8080/kakaoPaySuccessFail";
+            }else{
+                coin_user user = new coin_user();
+                Optional<coin_user> result_id = registerRepository.findByUserid(userid);   //DB에서 불러온 coin_user
+                user.setUserid(userid);    //userid는 바꿀 수 없다.
+                user.setUsername((String) result_id.get().getUsername());
+                user.setUserpw((String) result_id.get().getUserpw());
+                //입력 값이 있다면 원래 있던 코인의 수와 더해준다.
+                Integer sum = (Integer) result_id.get().getUsercoin() + coin;
+                user.setUsercoin(sum);
+                registerRepository.save(user);                  // DB에 저장해준다
+            }
 
             return kakaoPayVO.getNext_redirect_pc_url();
 

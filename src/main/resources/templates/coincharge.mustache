@@ -1,0 +1,20 @@
+{{>layouts/afterHeader}}
+<form method="post" action="/use">
+    <div style="display:table-cell; vertical-align: middle;">
+        <h2>방 코인 충전</h2>
+        <div class="input-box">
+            <h4>{{numroom}}</h4>
+            <input type="hidden" name="numroom" value="{{numroom}}">
+            <input type="hidden" value="{{iuse}}" name="iuse">
+            <input type="hidden" value="{{etime}}" name="etime">
+            <label for="userid">방 번호</label>
+        </div>
+        <div class="input-box">
+            <input type="number" name="coin" placeholder="코인">
+            <label for="Coin">코인</label>
+        </div>
+        <button type="submit">코인 충전</button>
+    </div>
+</form>
+</body>
+</html>

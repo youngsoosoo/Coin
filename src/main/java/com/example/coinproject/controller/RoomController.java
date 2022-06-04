@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
@@ -34,6 +35,19 @@ public class RoomController {
         return "mainpage";
     }
 
+    @GetMapping("/coincharge")
+    public String charge(){
+        return "/coincharge";
+    }
+
+    @PostMapping("coincharge")
+    public void coinchargeSuccess(@RequestParam("numroom") int numroom, @RequestParam("iuse") String iuse, @RequestParam("coin") int coin, @RequestParam("etime") int etime, Model model){
+        model.addAttribute("numroom", numroom);
+        model.addAttribute("iuse", iuse);
+        model.addAttribute("coin", coin);
+        model.addAttribute("etime", etime);
+    }
+
     @PostMapping("/use")
     public String Use(RoomForm form, HttpSession session){  //코인 충전
         coin_user user = new coin_user();
@@ -48,7 +62,10 @@ public class RoomController {
         int inputcoin = result_user.get().getUsercoin() - form.toEntity().getCoin();    //아이디가 보유하고 있는 코인을 방에 넣어줌
 
         LocalTime currentTime = LocalTime.now();   //현재 시간 now()
+        log.info(String.valueOf(currentTime));
+        log.info(String.valueOf(currentTime.plusHours(hour).plusMinutes(minute)));
         LocalTime targetTime = LocalTime.of(22, 00);    //마감 시간
+        log.info(String.valueOf(targetTime));
 
         //현재 시간
         if(minute >= 60){

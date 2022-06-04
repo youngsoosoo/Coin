@@ -26,7 +26,6 @@ public class kakaopayController {
     @Setter(onMethod_ = @Autowired)
     private kakaoPayService kakaopay;
 
-
     @GetMapping("/kakaoPay")
     public String kakaoPayGet() {
         return "/kakaopay";
