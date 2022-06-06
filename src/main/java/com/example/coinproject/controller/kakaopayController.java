@@ -1,7 +1,5 @@
 package com.example.coinproject.controller;
 
-import com.example.coinproject.DTO.RegisterForm;
-import com.example.coinproject.entity.coin_user;
 import com.example.coinproject.service.kakaoPayService;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 @Log
 @Controller

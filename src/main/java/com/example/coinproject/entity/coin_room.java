@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalTime;
 
 @AllArgsConstructor
 @ToString
@@ -22,4 +23,6 @@ public class coin_room {                    //개체
     private int coin;   //방 코인 개수
     @Column
     private int etime;  //남은 시간
+    @Column
+    private LocalTime regtime;
 }

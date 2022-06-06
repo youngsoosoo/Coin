@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j  //로깅을 위한 어노테이션
@@ -30,8 +31,32 @@ public class RoomController {
 
     @GetMapping("/mainpage")
     public String Mainpage(Model model){        //메인페이지 노래방 테이블 출력
+        coin_room room = new coin_room();
+        LocalTime currentTime = LocalTime.now();
+        LocalTime targetTime = LocalTime.of(00, 00, 00);
         List<coin_room> all = roomRepository.findAll(); //리스트에 DB정보 넣기
         model.addAttribute("list",all); //반복문을 위한 반복문 사용과 리스트 값 넘기기 위한 model
+        List<coin_room> list = all.stream().filter(x -> x.getIuse().equals("사용중")).collect(Collectors.toList());//사용중인 노래방을 리스트 담는 것
+        for(int i=0; i<list.size(); i++){
+            room.setNumroom(list.get(i).getNumroom());
+            if(currentTime.isAfter(all.get(i).getRegtime().plusMinutes(3))) {//여기부분고쳐야함 시간 넘기는 거
+                log.info("6");
+                int coin = all.get(i).getCoin();
+                if (coin <= 1) {
+                    room.setCoin(0);
+                    room.setEtime(0);
+                    room.setIuse("사용가능");
+                    room.setRegtime(targetTime);
+                }else {
+                    room.setCoin(coin - 1);
+                    room.setEtime((coin - 1) * 3);
+                    room.setIuse("사용중");
+                    room.setRegtime(all.get(i).getRegtime().plusMinutes(3));
+                }
+                log.info("3");
+                roomRepository.save(room);
+            }
+        }
         return "mainpage";
     }
 
@@ -62,10 +87,7 @@ public class RoomController {
         int inputcoin = result_user.get().getUsercoin() - form.toEntity().getCoin();    //아이디가 보유하고 있는 코인을 방에 넣어줌
 
         LocalTime currentTime = LocalTime.now();   //현재 시간 now()
-        log.info(String.valueOf(currentTime));
-        log.info(String.valueOf(currentTime.plusHours(hour).plusMinutes(minute)));
-        LocalTime targetTime = LocalTime.of(22, 00);    //마감 시간
-        log.info(String.valueOf(targetTime));
+        LocalTime targetTime = LocalTime.of(23, 00);    //마감 시간
 
         //현재 시간
         if(minute >= 60){
@@ -76,6 +98,7 @@ public class RoomController {
             room.setCoin(coin);
             room.setEtime(minute);
             room.setIuse("사용중");
+            room.setRegtime(currentTime);
             user.setUserid(result_user.get().getUserid());
             if(result_user.get().getUsercoin() < 1){
                 return "coinfail";
