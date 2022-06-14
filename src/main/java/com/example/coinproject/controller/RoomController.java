@@ -29,11 +29,11 @@ public class RoomController {
     @Autowired
     private RegisterRepository registerRepository;
 
-    @GetMapping("/mainpage")
-    public String Mainpage(Model model){        //메인페이지 노래방 테이블 출력
+    @GetMapping("/mainpage")//메인페이지 노래방 테이블 출력
+    public String Mainpage(Model model){
         coin_room room = new coin_room();
         LocalTime currentTime = LocalTime.now();
-        LocalTime targetTime = LocalTime.of(00, 00, 00);
+        LocalTime targetTime = LocalTime.of(00, 00, 00);//시간을 00시로 설정
         List<coin_room> all = roomRepository.findAll(); //리스트에 DB정보 넣기
         model.addAttribute("list",all); //반복문을 위한 반복문 사용과 리스트 값 넘기기 위한 model
         List<coin_room> list = all.stream().filter(x -> x.getIuse().equals("사용중")).collect(Collectors.toList());//사용중인 노래방을 리스트 담는 것
@@ -60,12 +60,12 @@ public class RoomController {
         return "mainpage";
     }
 
-    @GetMapping("/coincharge")
+    @GetMapping("/coincharge")  // 코인 충전 페이지를 호출.
     public String charge(){
         return "/coincharge";
     }
 
-    @PostMapping("coincharge")
+    @PostMapping("coincharge")  // 받아온 값을 페이지에 뿌려줌.
     public void coinchargeSuccess(@RequestParam("numroom") int numroom, @RequestParam("iuse") String iuse, @RequestParam("coin") int coin, @RequestParam("etime") int etime, Model model){
         model.addAttribute("numroom", numroom);
         model.addAttribute("iuse", iuse);
@@ -73,8 +73,8 @@ public class RoomController {
         model.addAttribute("etime", etime);
     }
 
-    @PostMapping("/use")
-    public String Use(RoomForm form, HttpSession session){  //코인 충전
+    @PostMapping("/use")//코인 충전
+    public String Use(RoomForm form, HttpSession session){
         coin_user user = new coin_user();
         coin_room room = form.toEntity();
         Optional<coin_user> result_user = registerRepository.findByUserid((String) session.getAttribute("userid"));
@@ -115,7 +115,7 @@ public class RoomController {
         return "coinfail";
     }
 
-    @GetMapping("/map")
+    @GetMapping("/map") //지도를 반환
     public String Map(){    //지도
         return "map";
     }

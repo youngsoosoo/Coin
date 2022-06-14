@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.java.Log;
 
-@Service
+@Service    //해당 클래스는 Service
 @Log
 public class kakaoPayService {
     private static final String HOST = "https://kapi.kakao.com";
@@ -30,7 +30,7 @@ public class kakaoPayService {
     private KakaoPayVO kakaoPayVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
 
-    public String kakaoPayReady(int coin, String userid) {
+    public String kakaoPayReady(int coin, String userid) {  //결제를 함.
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -72,10 +72,8 @@ public class kakaoPayService {
                 Integer sum = (Integer) result_id.get().getUsercoin() + coin;
                 user.setUsercoin(sum);
                 registerRepository.save(user);                  // DB에 저장해준다
+                return kakaoPayVO.getNext_redirect_pc_url();
             }
-
-            return kakaoPayVO.getNext_redirect_pc_url();
-
         } catch (RestClientException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -88,7 +86,7 @@ public class kakaoPayService {
 
     }
 
-    public KakaoPayApprovalVO kakaoPayInfo(String pg_token, int coin, String userid) {
+    public KakaoPayApprovalVO kakaoPayInfo(String pg_token, int coin, String userid) {  //결제 정보를 알려줌
 
         log.info("KakaoPayInfoVO............................................");
         log.info("-----------------------------");

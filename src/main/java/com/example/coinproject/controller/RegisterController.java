@@ -16,13 +16,13 @@ public class RegisterController {
     @Autowired // 객체 자동 연결
     private RegisterRepository registerRepository;
 
-    @GetMapping("/register")
-    public String Register(){                               //회원가입 페이지
+    @GetMapping("/register")//회원가입 페이지
+    public String Register(){
         return"register";
     }
 
-    @PostMapping("/registeraction")
-    public String registerAction(RegisterForm form){        //회원가입 페이지 백엔드
+    @PostMapping("/registeraction")//회원가입 페이지 백엔드
+    public String registerAction(RegisterForm form){
         log.info(form.toString());
         //System.out.println(form.toString()); --> 로깅기능으로 대체
         // 1. DTO 변환

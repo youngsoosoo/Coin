@@ -15,7 +15,7 @@ import java.util.Optional;
 public class LoginService {
     private final RegisterRepository registerRepository;
 
-    public int login(coin_user user) {
+    public int login(coin_user user) {      //로그인 서비스
         Optional<coin_user> result_id = registerRepository.findByUserid(user.getUserid());
         if (!result_id.get().getUserid().equals(user.getUserid())) {
             return 0;
@@ -26,7 +26,7 @@ public class LoginService {
         return 1;
     }
 
-    public int managerlogin(coin_user user){
+    public int managerlogin(coin_user user){        //관리자 로그인
         if(!user.getUserid().equals("root")){
             return 0;
         }

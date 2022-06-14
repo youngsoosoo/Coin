@@ -4,7 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 
-@Data
+@Data   //Setter, Getter, ToString, Constructor에 대한 정보를 자동적으로 생성
 public class KakaoPayApprovalVO {
 
     //response
